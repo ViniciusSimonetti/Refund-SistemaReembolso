@@ -78,7 +78,7 @@ fieldset legend {
 }
 
 fieldset:focus-within legend {
-  color: #1f8459;
+  color: #00c06d;
   font-weight: 700;
 }
 
