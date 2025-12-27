@@ -45,5 +45,15 @@ form.onsubmit = (event) => {
         created_at: new Date()
 
     }
+    //Chama a funcao para adicionar a nova despesa
+    ExpenseAdd(newExpense);
+}
 
+function ExpenseAdd(newExpense){
+    try {
+       
+    } catch (error) {
+        alert("Nao foi possivel adicionar uma nova despesa")
+        console.log(error)
+    }
 }
