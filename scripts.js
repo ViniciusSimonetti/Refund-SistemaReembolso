@@ -97,8 +97,11 @@ function ExpenseAdd(newExpense){
 
     // Adiciona o item na lista 
      expenseList.append(expenseItem)
+ 
+    // Limpa o formulario apos adicionar a despesa
+         clearForm()
 
-     // Atualiza os totais
+    // Atualiza os totais
          updateTotals()
 
     } catch (error) {
@@ -107,14 +110,14 @@ function ExpenseAdd(newExpense){
     }
 }
 
-//Funcao para atualizar os totais de despesas
+// Funcao para atualizar os totais de despesas
 function updateTotals() {
-    //Implementar a logica para atualizar os totais
+    // Implementar a logica para atualizar os totais
     try {
-       //Recupera todos os itens (li) da lista (ul)
+       // Recupera todos os itens (li) da lista (ul)
        const items = expenseList.children 
       
-       //Atualiza a quantidade de despesas
+       // Atualiza a quantidade de despesas
        expenseQuantity.textContent = `${items.length} ${
         items.length > 1 ? "despesas" : "despesa"
  }`
@@ -122,7 +125,7 @@ function updateTotals() {
     // Variavel para incrementar o total
     let total = 0;
 
-    //Percorre cada item que é (li) da lista (ul)
+    // Percorre cada item que é (li) da lista (ul)
     for(let item = 0; item < items.length; item++) {
         const itemAmount = items[item].querySelector(".expense-amount")
 
@@ -146,10 +149,10 @@ function updateTotals() {
     // Formata o valor e remove o R$ que seria EXBIDIDO PELA SMALL com um estilo customizado
     total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
 
-    //Limpa o conteudo atual do elemento
+    // Limpa o conteudo atual do elemento
     expenseTotal.innerHTML = ""
 
-    //Adiciona o simbolo de R$ e o total formatado no elemento
+    // Adiciona o simbolo de R$ e o total formatado no elemento
     expenseTotal.append(symbolBRL, total)
     } catch (error) {
         console.log(error)
@@ -163,10 +166,22 @@ expenseList.addEventListener("click", function (event) {
     if (event.target.classList.contains("remove-icon")) {
         // Obtem a li pai do elemento clicado 
         const item = event.target.closest(".expense");
-        
+
         //Remove o item da lista
         item.remove();
     }
         //Atualiza os totais
         updateTotals()
 });
+
+
+// Funcao para limpar o formulario apo o o submit
+function clearForm() {
+    // Limpa os inputs do formulario
+    expense.value = "";
+    amount.value = "";
+    category.value = ""; 
+    
+    // Coloca o foco no input da despesa
+    expense.focus();
+}
